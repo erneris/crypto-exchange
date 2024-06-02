@@ -2,5 +2,7 @@
 Cryptocurrency exchange platform emulator on Python.
 
 # Project supports:
-. 1
-. 2
+* Multiple profiles
+* Monitoring cryptocurrency
+* Buying/selling of cryptocurrency
+* Export of profile as an email
