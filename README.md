@@ -1,2 +1,4 @@
 # crypto-exchange
-Crypto currency exchange platform emulator on python
+Cryptocurrency exchange platform emulator on Python.
+
+*Project supports:
