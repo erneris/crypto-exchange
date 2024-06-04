@@ -1,3 +1,10 @@
 {
-    "profiles": []
+    "profiles": [
+        {
+            "id": 0,
+            "name": "Ernestas",
+            "email": "ernestassin1@gmail.com",
+            "assets": []
+        }
+    ]
 }
