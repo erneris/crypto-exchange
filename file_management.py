@@ -17,4 +17,6 @@ def get_profiles():
         save_profiles([])
         return []
 
+def update_profile(profile):
+    profiles = get_profiles()   
     
