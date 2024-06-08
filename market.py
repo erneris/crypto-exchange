@@ -6,7 +6,7 @@ def portfolio(profile):
     pass
 
 def market(profile):
-    
+    pass
 
 def sell(profile):
     pass
