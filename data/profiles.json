@@ -11,21 +11,26 @@
             "id": 1,
             "name": "Tester1",
             "email": "testerr2@gmail.com",
-            "money": 50000,
+            "money": 50000.0,
             "assets": []
         },
         {
             "id": 2,
             "name": "Cigonas",
             "email": "420@gmail.com",
-            "money": 5000,
-            "assets": []
+            "money": 1305.75,
+            "assets": [
+                {
+                    "symbol": "ETH",
+                    "ammount": 1.0
+                }
+            ]
         },
         {
             "id": 3,
             "name": "Bbd",
             "email": "ed@gmail.com",
-            "money": 300000,
+            "money": 300000.0,
             "assets": []
         }
     ]

@@ -2,7 +2,7 @@ from file_management import update_profile, get_profile
 from sys import exit
 from utils import clear, text_message
 from termcolor import colored
-from email import export
+from email_management import export
 from market import sell, market, portfolio
 
 def start_menu(id):
@@ -17,17 +17,16 @@ def start_menu(id):
                 raise ValueError
         except ValueError:
             pass
-
+        clear()
         if item == 1: #portfolio
-            portfolio()
+            portfolio(profile)
         elif item == 2: #crypto market
-            market()
+            market(profile)
         elif item == 3: #sell assets
-            sell()
+            sell(profile)
         elif item == 4: #export data
-            export()
+            export(profile)
         elif item == 5: #cheats
-            clear()
             text_message("Cheat menu")
             print(colored(f"""Your funds: ${profile["money"]}""", "green"))
             while True:
@@ -50,5 +49,5 @@ def start_menu(id):
         elif item == 6: #logout
             return 2
         elif item == 7: #quit
-            clear()
             exit(0)
+        clear()
