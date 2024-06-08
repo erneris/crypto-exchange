@@ -1,10 +1,8 @@
-import sys, os, csv, colorama, re
+from re import match
 from termcolor import colored
 from file_management import get_profiles, save_profiles
-
-def text_message(text):
-    element = "#" * round((os.get_terminal_size()[0] - len(text) - 2)/2)
-    print(colored(f"{element} {text} {element}", "blue"))
+from menu import start_menu
+from utils import clear, text_message
 
 def create_profile():
 
@@ -16,14 +14,14 @@ def create_profile():
     
     while True:
         email = input(colored("Your email: ", "yellow"))
-        if re.match(email_regex, email):
+        if match(email_regex, email):
             break
         else:
             print(colored("Invalid email adress!", "red"))
 
     while True:
         try:
-            money = int(input(colored("Ammount of starting money (at least $500): ", "yellow")).replace("$", ""))
+            money = float(input(colored("Ammount of starting money (at least $500): ", "yellow")).replace("$", ""))
             if money < 500:
                 print(colored("Starting money is too low!", "red"))  
             else:
@@ -41,7 +39,7 @@ def create_profile():
             max_id = profile["id"]
 
     id = max_id + 1
-    profile = {"id": id, "name": name, "email": email, "assets": []}
+    profile = {"id": id, "name": name, "email": email, "money": money, "assets": []}
     profiles.append(profile)
     save_profiles(profiles)
     return profile
@@ -74,22 +72,18 @@ def select_profile():
                     id = int(input_id)
                     for profile in profiles:
                         if profile["id"] == id:
-                            return profile
+                            return profile["id"]
 
             except ValueError:
                 print(colored("Invalid ID", "red"))
     
-
-
 def main():
     clear()
-    colorama.init()
     text_message("Welcome to Cryptocurrency Exchange Emulator!")
     profile = select_profile()
-    print(profile)
-
-def clear():
-    os.system('clear')
+    clear()
+    if start_menu(profile) == 2:
+        main()
 
 if __name__ == "__main__":
     main()

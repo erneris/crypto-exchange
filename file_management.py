@@ -17,6 +17,16 @@ def get_profiles():
         save_profiles([])
         return []
 
-def update_profile(profile):
-    profiles = get_profiles()   
+def update_profile(new_profile):
+    profiles = get_profiles()
+    for i in range(len(profiles)):
+        if profiles[i]["id"] == new_profile["id"]:
+            profiles[i] = new_profile
+            save_profiles(profiles)
+
+def get_profile(id):
+    profiles = get_profiles()
+    for profile in profiles:
+        if profile["id"] == id:
+            return profile
     

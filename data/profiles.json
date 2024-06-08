@@ -4,12 +4,28 @@
             "id": 0,
             "name": "Ernestas",
             "email": "ernestassin1@gmail.com",
+            "money": 1017010.0,
             "assets": []
         },
         {
             "id": 1,
-            "name": "Ernestas",
-            "email": "ernestassin1@gmail.com",
+            "name": "Tester1",
+            "email": "testerr2@gmail.com",
+            "money": 50000,
+            "assets": []
+        },
+        {
+            "id": 2,
+            "name": "Cigonas",
+            "email": "420@gmail.com",
+            "money": 5000,
+            "assets": []
+        },
+        {
+            "id": 3,
+            "name": "Bbd",
+            "email": "ed@gmail.com",
+            "money": 300000,
             "assets": []
         }
     ]
