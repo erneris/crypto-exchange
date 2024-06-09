@@ -49,7 +49,7 @@ def select_profile():
     if len(profiles) == 0:
         print(colored("You don't have any created profiles. Please create a new one.", "red"))
         profile = create_profile()
-        return profile
+        return profile["id"]
     else:  
         ids = []
         id = None
@@ -64,7 +64,7 @@ def select_profile():
                 if input_id.lower() == "new":
                     clear()
                     profile = create_profile()
-                    return profile
+                    return profile["id"]
                     
                 else:
                     if not int(input_id) in ids:
@@ -80,9 +80,9 @@ def select_profile():
 def main():
     clear()
     text_message("Welcome to Cryptocurrency Exchange Emulator!")
-    profile = select_profile()
+    id = select_profile()
     clear()
-    if start_menu(profile) == 2:
+    if start_menu(id) == 2:
         main()
 
 if __name__ == "__main__":

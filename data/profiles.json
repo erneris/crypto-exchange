@@ -2,36 +2,15 @@
     "profiles": [
         {
             "id": 0,
-            "name": "Ernestas",
-            "email": "ernestassin1@gmail.com",
-            "money": 1017010.0,
-            "assets": []
-        },
-        {
-            "id": 1,
             "name": "Tester1",
-            "email": "testerr2@gmail.com",
-            "money": 50000.0,
-            "assets": []
-        },
-        {
-            "id": 2,
-            "name": "Cigonas",
-            "email": "420@gmail.com",
-            "money": 1305.75,
+            "email": "test@test.test",
+            "money": 460636.86,
             "assets": [
                 {
-                    "symbol": "ETH",
-                    "ammount": 1.0
+                    "symbol": "BTC",
+                    "ammount": 2.0
                 }
             ]
-        },
-        {
-            "id": 3,
-            "name": "Bbd",
-            "email": "ed@gmail.com",
-            "money": 300000.0,
-            "assets": []
         }
     ]
 }

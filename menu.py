@@ -25,6 +25,7 @@ def start_menu(id):
         elif item == 3: #sell assets
             sell(profile)
         elif item == 4: #export data
+            text_message("Data export as email")
             export(profile)
         elif item == 5: #cheats
             text_message("Cheat menu")
@@ -32,7 +33,7 @@ def start_menu(id):
             while True:
                 try:
                     print(colored("Type in desired ammount of money to be added your account: ", "yellow"), end = "")
-                    ammount = float(input(""))
+                    ammount = round(float(input("")), 2)
                     if ammount <= 0:
                         raise ValueError
                     clear()

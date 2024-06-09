@@ -21,6 +21,7 @@ def update_profile(new_profile):
     profiles = get_profiles()
     for i in range(len(profiles)):
         if profiles[i]["id"] == new_profile["id"]:
+            new_profile["money"] = round(new_profile["money"], 2)
             profiles[i] = new_profile
             save_profiles(profiles)
 

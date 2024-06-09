@@ -5,7 +5,25 @@ from requests import get
 from crypto_info import get_currencies, get_data
 
 def portfolio(profile):
-    pass
+    clear()
+    currencies = get_currencies()
+    text_message(f"""{profile["name"]} portfolio""")
+    print(colored(f"""Available funds: ${profile["money"]}\n""", "green"))
+    print(colored(f"""Your assets:""", "yellow"))
+    value = profile["money"]
+
+    for asset in profile["assets"]:
+        asset_data = {}
+        for currency in currencies:
+            if currency["symbol"] == asset["symbol"]:
+                asset_data = currency
+        price = round(asset["ammount"] * asset_data["price"], 2)    
+        value += price
+        print(colored(f"""{asset_data["name"]} ({asset_data["symbol"]}) - {asset["ammount"]} = ${price}""", "blue"))
+    print(colored(f"Total account value - ${value}\n", "yellow"))
+            
+    print(colored("Enter anything to continue: ", "green"), end = "")
+    input("")
 
 def market(profile):
     loading_screen()
@@ -13,15 +31,26 @@ def market(profile):
     currencies = get_currencies()
     ammount_of_currencies = len(currencies)
     pages = ammount_of_currencies // (height - 3) + 1
+    last_page_size = ammount_of_currencies % (height - 3)
     
     current_page = 1
     clear()
     while True:
         text_message("Cryptocurrency marketplace")
         print(colored("Type in symbol of cryptocurrency you would like to purchase, < or > to switch between pages or done to leave.", "green"))
+        first = None
+        last = None
+        if current_page == pages:
+            last = ammount_of_currencies
+            first = ammount_of_currencies - last_page_size
+        else:
+            first = (current_page - 1) * (height - 3)
+            last = first + height - 3
 
-        #todo print out cryptos
-
+        for currency in currencies[first:last]:
+            print(colored(f"""{currency["name"]} --- {currency["symbol"]}""", "yellow"), end = "")
+            print(colored(f"""  Price for 1: ${currency["price"]}""", "green"))
+            
         text_message(f"(<) {current_page} page out of {pages} (>)")
 
 
@@ -61,7 +90,7 @@ def market(profile):
                     else:
                         while True:
                             clear()
-                            price = ammount * currency["price"]
+                            price = round(ammount * currency["price"], 2)
                             print(colored(f"Final price would be ${price}, would like to purchase? (y/n): ", "yellow"), end = "")
                             answer = input("").strip().lower()
                             if answer == "y" or answer == "yes":
@@ -71,8 +100,15 @@ def market(profile):
                                     break
                                 else:
                                     profile["money"] -= price
-                                    profile["assets"].append({"symbol": currency["symbol"], "ammount": ammount})
+                                    found = False
+                                    for asset in profile["assets"]:
+                                        if asset["symbol"].lower() == currency["symbol"].lower():
+                                            asset["ammount"] += ammount
+                                            found = True
+                                    if not found:
+                                       profile["assets"].append({"symbol": currency["symbol"], "ammount": ammount})
                                     update_profile(profile)
+                                    clear()
                                     break
                             elif answer == "n" or answer == "no":
                                 clear()
