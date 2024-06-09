@@ -34,14 +34,3 @@ def export(profile):
             
     print(colored("Enter anything to continue: ", "green"), end = "")
     input("")
-    
-
-# for asset in profile["assets"]:
-#         asset_data = {}
-#         for currency in currencies:
-#             if currency["symbol"] == asset["symbol"]:
-#                 asset_data = currency
-#         price = round(asset["ammount"] * asset_data["price"], 2)    
-#         value += price
-#         print(colored(f"""{asset_data["name"]} ({asset_data["symbol"]}) - {asset["ammount"]} = ${price}""", "blue"))
-#     print(colored(f"Total account value - ${value}\n", "yellow"))

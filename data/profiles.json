@@ -4,11 +4,15 @@
             "id": 0,
             "name": "Tester1",
             "email": "test@test.test",
-            "money": 460636.86,
+            "money": 565156.87,
             "assets": [
                 {
                     "symbol": "BTC",
-                    "ammount": 2.0
+                    "ammount": 0.5
+                },
+                {
+                    "symbol": "XRP",
+                    "ammount": 0.0
                 }
             ]
         }

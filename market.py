@@ -119,10 +119,90 @@ def market(profile):
                     clear()
                     print(colored("Invalid input", "red"))
                     pass
-
         clear()
 
 
 def sell(profile):
-    pass
-    
+    currencies = get_currencies()
+    while True:
+        text_message("Sell your assets")
+        print(colored("Type in symbol of cryptocurrency you would like to sell or done to leave.", "green"))
+
+        for user_currency in profile["assets"]:
+            price = None
+            name = None
+            for currency in currencies:
+                if currency["symbol"] == user_currency["symbol"]:
+                    price = currency["price"]
+                    name = currency["name"]
+            if user_currency["ammount"] > 0:
+                print(colored(f"""{user_currency["ammount"]} {name} --- {user_currency["symbol"]}""", "yellow"), end = "")
+                print(colored(f"""  Price for 1: ${price}""", "green"), end = "")
+                print(colored(f"""  Price for all: ${round(price * user_currency["ammount"], 2)}\n""", "green"), end = "")
+
+        control = input("").strip().lower()
+                
+        if control == "done":
+            return 0
+        
+        else:
+            found = False
+            asset_data = None
+            for asset in profile["assets"]:
+                if asset["symbol"].lower() == control:
+                    asset_data = asset
+                    found = True
+                    break
+
+            currency = get_data(control)
+            if found:
+                clear()
+                while True:
+                    try:
+                        text_message(f"""Selling {currency["name"]}""")
+                        print(colored(f"""Your available balance: ${profile["money"]}""", "green"))
+                        print(colored(f"""Price of 1 {currency["name"]}: ${currency["price"]}""", "yellow"))
+                        print(colored(f"""{currency["name"]} owned: {asset_data["ammount"]}""", "yellow"))
+                        print(colored(f"""Enter how much {currency["symbol"]} your would like to sell (min 0.0001) or done to quit: """), end = "")
+                        ammount = input("").strip().lower()
+                        if ammount == "done":
+                            clear()
+                            break
+                        ammount = float(ammount)
+                        if ammount < 0.0001:
+                            clear()
+                            print(colored("Selling ammount lower than minimum", "red"))
+                            pass
+                        elif ammount > asset_data["ammount"]:
+                            clear()
+                            print(colored("Selling ammount is higher than owned ammount", "red"))
+                            pass
+                        else:
+                            while True:
+                                clear()
+                                price = round(ammount * currency["price"], 2)
+                                print(colored(f"Final sell price would be ${price}, would like to sell? (y/n): ", "yellow"), end = "")
+                                answer = input("").strip().lower()
+                                if answer == "y" or answer == "yes":
+                                    profile["money"] += price
+                                    found = False
+                                    for asset1 in profile["assets"]:
+                                        if asset1["symbol"].lower() == asset["symbol"].lower():
+                                            asset1["ammount"] -= ammount
+                                    update_profile(profile)
+                                    clear()
+                                    break
+                                elif answer == "n" or answer == "no":
+                                    clear()
+                                    break
+                                
+
+                    except ValueError:
+                        clear()
+                        print(colored("Invalid input", "red"))
+                        pass
+            else:
+                clear()
+                pass
+        
+        
