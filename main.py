@@ -33,7 +33,7 @@ def create_profile():
     print(colored("Profile successfully created!", "green"))
 
     profiles = get_profiles()
-    max_id = -1
+    max_id = 0
     for profile in profiles:
         if profile["id"] > max_id:
             max_id = profile["id"]

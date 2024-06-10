@@ -15,10 +15,10 @@ def export(profile):
     elif "test" in user_email.lower():
         print(colored("Your email is used for testing, message won't be sent", "red"))
     else:
-        try:
+        # try:
             text = f"""Hello {profile["name"]},\nYour currently have ${profile["money"]}\nYour assets are:\n"""
             for asset in profile["assets"]:
-                text.append(f"""{asset["ammount"]} {asset["symbols"]}\n""")
+                text += f"""{asset["ammount"]} {asset["symbol"]}\n"""
             message = MIMEText(text)
             message["Subject"] = "Data export"
             message["To"] = user_email
@@ -29,8 +29,8 @@ def export(profile):
             smtp_server.sendmail(message["From"], [user_email], message.as_string())
             smtp_server.quit()
             print(colored("Message sucessfully sent to your email", "yellow"))
-        except:
-            print(colored("An error occured while sending email message", "red"))
+        # except:
+        #     print(colored("An error occured while sending email message", "red"))
             
     print(colored("Enter anything to continue: ", "green"), end = "")
     input("")

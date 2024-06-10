@@ -13,7 +13,7 @@ def start_menu(id):
         print(colored("1| My portfolio\n2| Cryptocurrency market\n3| Sell assets\n4| Export data\n5| Cheats\n6| Log out\n7| Quit", "green"))
         try:
             item = int(input("").strip())
-            if item < 1 and item > 7:
+            if item < 1 or item > 7:
                 raise ValueError
         except ValueError:
             pass
@@ -38,9 +38,8 @@ def start_menu(id):
                         raise ValueError
                     clear()
                     print(colored("Money successfully added!", "green"))
-                    new_profile = profile
-                    new_profile["money"] = new_profile["money"] + ammount
-                    update_profile(new_profile)
+                    profile['money'] += ammount 
+                    update_profile(profile)
                     break
 
                 except ValueError:

@@ -1,8 +1,14 @@
-from requests import get
+import requests
+from sys import exit
 
 def get_currencies():
     currencies = []
-    request = get("https://api.coincap.io/v2/assets").json()["data"]
+    try:
+        request = requests.get("https://api.coincap.io/v2/assets").json()["data"]
+    except requests.JSONDecodeError:
+        print("An error has accured while getting cryptocurrency data, please try again later")
+        exit()
+
     for currency in request:
         if float(currency["priceUsd"]) < 0.01:
             currency["priceUsd"] = 0.01
