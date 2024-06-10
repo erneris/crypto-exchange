@@ -32,7 +32,7 @@ def start_menu(id):
             print(colored(f"""Your funds: ${profile["money"]}""", "green"))
             while True:
                 try:
-                    print(colored("Type in desired ammount of money to be added your account: ", "yellow"), end = "")
+                    print(colored("Type in desired ammount of money to be added to your account: ", "yellow"), end = "")
                     ammount = round(float(input("")), 2)
                     if ammount <= 0:
                         raise ValueError
